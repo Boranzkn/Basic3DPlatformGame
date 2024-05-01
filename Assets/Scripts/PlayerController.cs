@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
-    private float pushForce = 700f, speed = 300f, movement;
+    private float pushForce = 500f, speed = 600f, movement;
 
     // Start is called before the first frame update
     void Start()

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody rb;
+    private Rigidbody rb;
+    private float pushForce = 700f, speed = 300f, movement;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        movement = Input.GetAxis("Horizontal");
+    }
+
+    private void FixedUpdate()
+    {
+        rb.AddForce(0, 0, pushForce * Time.fixedDeltaTime);
+
+        rb.velocity = new Vector3(movement * speed *  Time.fixedDeltaTime, rb.velocity.y, rb.velocity.z);
     }
 }

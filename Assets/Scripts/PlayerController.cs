@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
-    private float pushForce = 500f, speed = 600f, movement;
+    private float pushForce = 520f, speed = 600f, movement;
+    private Vector3 spawnPoint = new Vector3 (0, 1, -124);
 
     // Start is called before the first frame update
     void Start()
@@ -24,5 +25,13 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(0, 0, pushForce * Time.fixedDeltaTime);
 
         rb.velocity = new Vector3(movement * speed *  Time.fixedDeltaTime, rb.velocity.y, rb.velocity.z);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Obstacle"))
+        {
+            this.transform.position = spawnPoint;
+        }
     }
 }

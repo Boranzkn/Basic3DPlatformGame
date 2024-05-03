@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] PlayerController playerController;
+    PlayerController playerController;
+    bool isGameEnded = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void RespawnPlayer()
     {
+        if (!isGameEnded)
+        {
+            isGameEnded = true;
+            StartCoroutine("RespawnCoroutine");
+        }
+    }
+
+    private IEnumerator RespawnCoroutine()
+    {
+        playerController.gameObject.SetActive(false);
+        yield return new WaitForSeconds(2f);
         playerController.transform.position = playerController.spawnPoint;
+        playerController.gameObject.SetActive(true);
+        isGameEnded = false;
     }
 }

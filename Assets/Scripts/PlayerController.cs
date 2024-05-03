@@ -28,11 +28,21 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(0, 0, pushForce * Time.fixedDeltaTime);
 
         rb.velocity = new Vector3(movement * speed *  Time.fixedDeltaTime, rb.velocity.y, rb.velocity.z);
+
+        FallDetector();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Obstacle"))
+        {
+            gameManager.RespawnPlayer();
+        }
+    }
+
+    private void FallDetector()
+    {
+        if (rb.transform.position.y < -3f)
         {
             gameManager.RespawnPlayer();
         }

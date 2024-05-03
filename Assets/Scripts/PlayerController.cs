@@ -6,12 +6,15 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
     private float pushForce = 520f, speed = 600f, movement;
-    private Vector3 spawnPoint = new Vector3 (0, 1, -124);
+    [HideInInspector] public Vector3 spawnPoint = new Vector3 (0, 1, -124);
+
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -31,7 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.collider.CompareTag("Obstacle"))
         {
-            this.transform.position = spawnPoint;
+            gameManager.RespawnPlayer();
         }
     }
 }

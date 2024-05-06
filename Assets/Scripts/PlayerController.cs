@@ -47,4 +47,12 @@ public class PlayerController : MonoBehaviour
             gameManager.RespawnPlayer();
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "Finisher")
+        {
+            gameManager.LevelUp();
+        }
+    }
 }

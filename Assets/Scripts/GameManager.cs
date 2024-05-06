@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     bool isGameEnded = false;
     int score = 0;
     [SerializeField] TMP_Text scoreText;
+    [SerializeField] GameObject nextLevelPanel;
 
     void Start()
     {
@@ -37,5 +39,16 @@ public class GameManager : MonoBehaviour
     {
         score += addScore;
         scoreText.text = score.ToString();
+    }
+
+    public void LevelUp()
+    {
+        nextLevelPanel.SetActive(true);
+        Invoke("GoNextLevel", 2f);
+    }
+
+    public void GoNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

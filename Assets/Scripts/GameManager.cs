@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     PlayerController playerController;
     bool isGameEnded = false;
+    int score = 0;
+    [SerializeField] TMP_Text scoreText;
 
     void Start()
     {
@@ -28,5 +31,11 @@ public class GameManager : MonoBehaviour
         playerController.transform.position = playerController.spawnPoint;
         playerController.gameObject.SetActive(true);
         isGameEnded = false;
+    }
+
+    public void AddScore(int addScore)
+    {
+        score += addScore;
+        scoreText.text = score.ToString();
     }
 }

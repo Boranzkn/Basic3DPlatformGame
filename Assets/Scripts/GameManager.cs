@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     bool isGameEnded = false;
     int score = 0;
     [SerializeField] TMP_Text scoreText;
+    [SerializeField] TMP_Text winText;
     [SerializeField] GameObject nextLevelPanel;
 
     void Start()
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator RespawnCoroutine()
     {
         playerController.gameObject.SetActive(false);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         isGameEnded = false;
     }
@@ -43,7 +44,8 @@ public class GameManager : MonoBehaviour
     public void LevelUp()
     {
         nextLevelPanel.SetActive(true);
-        Invoke("GoNextLevel", 2f);
+        winText.text = "Congratulations!\nScore: " + score;
+        Invoke("GoNextLevel", 1.5f);
     }
 
     public void GoNextLevel()
@@ -51,12 +53,3 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
-
-
-
-// Turkiye Sigorta
-// Hangi belgeler
-// Süre geçti sıkıntı olmasın
-// Süre geçti sıkıntı olmasın
-// 3381414 
-//  239

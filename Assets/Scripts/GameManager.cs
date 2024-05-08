@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -30,8 +30,7 @@ public class GameManager : MonoBehaviour
     {
         playerController.gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
-        playerController.transform.position = playerController.spawnPoint;
-        playerController.gameObject.SetActive(true);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         isGameEnded = false;
     }
 
@@ -52,3 +51,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
+
+
+
+// Turkiye Sigorta
+// Hangi belgeler
+// Süre geçti sıkıntı olmasın
+// Süre geçti sıkıntı olmasın
+// 3381414 
+//  239

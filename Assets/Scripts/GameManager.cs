@@ -9,7 +9,16 @@ public class GameManager : MonoBehaviour
     int score = 0;
     [SerializeField] TMP_Text scoreText;
     [SerializeField] TMP_Text winText;
+    [SerializeField] TMP_Text levelText;
     [SerializeField] GameObject nextLevelPanel;
+
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().buildIndex > 1)
+        {
+            ShowLevel();
+        }
+    }
 
     public void AddScore(int addScore)
     {
@@ -21,11 +30,17 @@ public class GameManager : MonoBehaviour
     {
         nextLevelPanel.SetActive(true);
         winText.text = "Congratulations!\nScore: " + score;
-        Invoke("GoNextLevel", 1.5f);
+        Invoke("GoNextLevel", .5f);
     }
 
     public void GoNextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    
+    public void ShowLevel()
+    {
+        int levelNum = SceneManager.GetActiveScene().buildIndex - 1;
+        levelText.text = "Level " + levelNum.ToString();
     }
 }

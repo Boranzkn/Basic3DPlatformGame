@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.collider.CompareTag("Obstacle"))
         {
-            gameManager.RespawnPlayer();
+            SceneManager.LoadScene("EndMenu");
         }
     }
 
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.transform.position.y < -3f)
         {
-            gameManager.RespawnPlayer();
+            SceneManager.LoadScene("EndMenu");
         }
     }
 
